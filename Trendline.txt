@@ -1,0 +1,28 @@
+import numpy as np
+import matplotlib.pyplot as plt
+# 创建模拟数据
+x=[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020]
+data1 = [22000+2940,16800+3300,27100+3650,18900+3980,32200+4530,21400+5490,43200+6490,23600+7870,52000+9900,19500+12400,49500+15300]#线1的WE纵坐标
+data2 = [33500,18400,40700,18400,44000,18100,47400,18200,49000,17900,56000]#线2的PEMWE纵坐标
+data3 = [2010000,1160000,2120000,1030000,1720000,911000,1460000,740000,908000,344000,375000]#线3的HYDROGEN纵坐标
+plt.figure(figsize=(18,20))
+fig, ax1 = plt.subplots()
+color = 'tab:red'
+ax1.set_xlabel('YEAR(y)')
+ax1.set_ylabel('Hydrogen')
+l2, = plt.plot(x, data3, color=color,label='Hydrogen')
+plt.legend(loc = 'upper left')
+plt.grid(ls='--',axis='x') # 设置 y 就在轴方向显示网格线
+ax2 = ax1.twinx()  # 创建共用x轴的第二个y轴
+color1 = 'tab:blue'
+color2='#87CEFA'
+ax2.set_ylabel('Water Electrolyser & PEMWE')
+l3, = plt.plot(x, data2, color=color1, label='PEMWE')
+l1, = plt.plot(x, data1, color=color2,label='WE')
+ax2.tick_params(axis='y')
+fig.tight_layout()
+plt.xticks(x)
+plt.legend(loc = 'upper right')
+my_x_ticks = np.arange(2010, 2021,1)#设置坐标轴名称
+plt.xticks(my_x_ticks,rotation=30)
+plt.show()
